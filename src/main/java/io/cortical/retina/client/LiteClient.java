@@ -29,7 +29,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 public class LiteClient {
     
     /** The default server address */
-    private static final String DEFAULT_SERVER = "api.cortical.io";
+    private static final String DEFAULT_SERVER = "http://api.cortical.io/rest";
     /** The default retina type */
     private static final String DEFAULT_RETINA = "en_associative";
     
@@ -40,29 +40,16 @@ public class LiteClient {
     private FullClient delegate;
     
     /**
-     * Constructs a new {@code CoreClient} using the specified api key
+     * Constructs a new {@code LiteClient} using the specified api key
      * and configured with the default server address and {@link Retina}
      * type.
      * 
      * @param apiKey    the api key string
      */
     public LiteClient(String apiKey) {
-        this(apiKey, DEFAULT_SERVER, DEFAULT_RETINA);
+        this(apiKey, DEFAULT_SERVER, DEFAULT_RETINA, new Endpoints(DEFAULT_RETINA, DEFAULT_SERVER, apiKey));
     }
-    
-    /**
-     * Constructs a new {@code CoreClient} using the specified api key,
-     * server address, and retina name/type.
-     * 
-     * @param apiKey        authorization key specific to each user
-     * @param apiServer     http or ip address
-     * @param retinaName    the type of retina to use (must be one of 
-     *                      en_associatiave (default) or en_synonymous).
-     */
-    public LiteClient(String apiKey, String apiServer, String retinaName) {
-        this(apiKey, apiServer, retinaName, new Endpoints(retinaName, apiServer, apiKey));
-    }
-    
+
     /**
      * Constructs a new {@code LiteClient} with the specified key, server location, retina
      * name and {@link Endpoints}

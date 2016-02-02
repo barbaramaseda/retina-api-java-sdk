@@ -27,7 +27,7 @@ public class LiteClientIntegrationTest {
     @Before
     public void before() {
         String key = System.getProperty("apiKey");
-        client = new LiteClient(key, "http://api.cortical.io/rest", "en_associative");
+        client = new LiteClient(key);
     }
     
     @Test
@@ -36,7 +36,7 @@ public class LiteClientIntegrationTest {
         LiteClient client = new LiteClient(NOT_NULL_API_KEY);
         assertNotNull(client);
         
-        client = new LiteClient(NOT_NULL_API_KEY, "api.cortical.io", "en_associative");
+        client = new LiteClient(NOT_NULL_API_KEY);
         assertNotNull(client);
         
         // Test negative path for two options
@@ -47,24 +47,6 @@ public class LiteClientIntegrationTest {
         catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
             assertEquals("The apiKey cannot be null.", e.getMessage());
-        }
-        
-        try {
-            client = new LiteClient(NOT_NULL_API_KEY, null, "en_associative");
-            fail(); // Problem if reached
-        }
-        catch (Exception e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("The base path cannot be null.", e.getMessage());
-        }
-        
-        try {
-            client = new LiteClient(NOT_NULL_API_KEY, "api.cortical.io", null);
-            fail(); // Problem if reached
-        }
-        catch (Exception e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("The retinaName cannot be null.", e.getMessage());
         }
     }
     
