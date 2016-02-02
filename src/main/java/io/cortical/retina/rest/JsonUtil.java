@@ -10,22 +10,21 @@ package io.cortical.retina.rest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
+
 
 /** Generated. **/
 public class JsonUtil {
     public static ObjectMapper mapper;
-
+    
     static {
-    	mapper = new ObjectMapper();
-	    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-	    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-	    mapper.registerModule(new JodaModule());
-	}
-
+        mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
+    
     /** Allows retrieving an instance of {@link ObjectMapper}. **/
-	public static ObjectMapper getJsonMapper() {
-		return mapper;
-	}
+    public static ObjectMapper getJsonMapper() {
+        return mapper;
+    }
 }
 
