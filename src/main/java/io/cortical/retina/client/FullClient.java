@@ -59,7 +59,7 @@ public class FullClient {
     
     
     /**
-     * Constructs a new {@code CoreClient} using the specified api key
+     * Constructs a new {@code FullClient} using the specified api key
      * and configured with the default server address and {@link Retina}
      * type.
      * 
@@ -67,6 +67,17 @@ public class FullClient {
      */
     public FullClient(String apiKey) {
         this(apiKey, DEFAULT_SERVER, DEFAULT_RETINA);
+    }
+    
+
+    /**
+     * Creates a new instance of {@link FullClient} using the default server.
+     * 
+     * @param apiKey the api key
+     * @param retinaName the retina to use
+     */
+    public FullClient(String apiKey, String retinaName) {
+        this(apiKey, DEFAULT_SERVER, retinaName, new Endpoints(retinaName, DEFAULT_SERVER, apiKey));
     }
     
     /**
@@ -613,7 +624,7 @@ public class FullClient {
      * <b>To create image in memory:</b>
      * <pre>
      *  try {
-     *      CoreClient client ...
+     *      FullClient client ...
      *      ByteArrayInputStream in = client.getImage(model);
      *      BufferedImage bImage = ImageIO.read(in);
      *  }catch(IOException e) {
@@ -655,7 +666,7 @@ public class FullClient {
      * <b>To create image in memory:</b>
      * <pre>
      *  try {
-     *      CoreClient client ...
+     *      FullClient client ...
      *      ByteArrayInputStream in = client.getImage(model);
      *      BufferedImage bImage = ImageIO.read(in);
      *  }catch(IOException e) {
