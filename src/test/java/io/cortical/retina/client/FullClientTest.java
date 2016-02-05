@@ -313,12 +313,10 @@ public class FullClientTest {
      */
     @Test
     public void testGetTokensForText() throws ApiException, JsonProcessingException {
-        int count = 4;
-        Set<PosTag> expectedPosTags =  new LinkedHashSet<>(Arrays.asList(CC,CD,DT,EX,FW,IN,JJ,JJR,JJS,JJSS,LRB,LS,MD,
-            NN,NNP,NNPS,NNS,NP,NPS,PDT,POS,PP,PRPR$,PRP,PRP$,RB,RBR,RBS,RP,STAART,SYM,TO,UH,VBD,VBG,VBN,VBP,VB,VBZ,
-                WDT,WP$,WP,WRB));
+        int count = 1;
+        Set<PosTag> expectedPosTags = null;
         when(endpoints.textApi()).thenReturn(text);
-        when(text.getTokensForText(eq(TEXT), eq(FullClient.DEFAULT_TAGS))).thenReturn(createStrings(count));
+        when(text.getTokensForText(eq(TEXT), eq(expectedPosTags))).thenReturn(createStrings(count));
         List<String> tokens = client.getTokensForText(TEXT);
         assertEquals(count, tokens.size());
         verify(text, times(1)).getTokensForText(eq(TEXT), eq(expectedPosTags));

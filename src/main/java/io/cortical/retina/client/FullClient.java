@@ -7,7 +7,12 @@
  ******************************************************************************/
 package io.cortical.retina.client;
 
+import java.io.ByteArrayInputStream;
+import java.util.List;
+import java.util.Set;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import io.cortical.retina.core.Compare.CompareModel;
 import io.cortical.retina.core.Endpoints;
 import io.cortical.retina.core.ImageEncoding;
@@ -27,11 +32,6 @@ import io.cortical.retina.model.Retina;
 import io.cortical.retina.model.Term;
 import io.cortical.retina.model.Text;
 import io.cortical.retina.rest.ApiException;
-import java.io.ByteArrayInputStream;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -44,8 +44,6 @@ public class FullClient {
     public static final int DEFAULT_SCALING_FACTOR = 1;
     /** Specifies max percentage of on bits out of the representational whole. */
     public static final double DEFAULT_SPARSITY = 1.0;
-    /** Helper list to specify all tags. */
-    public static final Set<PosTag> DEFAULT_TAGS = new LinkedHashSet<PosTag>(Arrays.asList(PosTag.any()));
     
     
     /** The default server address */
@@ -108,7 +106,7 @@ public class FullClient {
     
     /**
      * Returns a List of all the {@link Term}s in the retina.
-     * @return  a List of all the terms in the retina.
+     * @return a List of all the terms in the retina.
      * @throws ApiException if there are some server or connection issues.
      */
     public List<Term> getTerms() throws ApiException {
@@ -116,7 +114,18 @@ public class FullClient {
     }
     
     /**
-     * Retrieve a term with meta-data for an exact match, or a list of potential retina {@link Term}s. 
+     * Retrieve term objects matching a given string.
+     * 
+     * @param term the term string for which to retrieve term objects.
+     * @return list of term objects corresponding to the input string.
+     * @throws ApiException if there are server or connection issues.
+     */
+    public List<Term> getTerms(String term) throws ApiException {
+    	return endpoints.termsApi().getTerms(term, 0, MAX_RESULTS, false);
+    }
+    
+    /**
+     * Retrieve a term with meta-data for an exact match or a list of potential retina {@link Term}s.
      * 
      * @param term                  the term for which to retrieve a term or a list of potential terms.
      * @param startIndex            the index marking the beginning of a page of responses
@@ -261,7 +270,7 @@ public class FullClient {
      * @throws ApiException     if there are server or connection issues.
      */
     public List<String> getTokensForText(String text) throws ApiException {
-        return getTokensForText(text, DEFAULT_TAGS);
+        return getTokensForText(text, null);
     }
     
     /**
