@@ -7,12 +7,7 @@
  ******************************************************************************/
 package io.cortical.retina.client;
 
-import java.io.ByteArrayInputStream;
-import java.util.List;
-import java.util.Set;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import io.cortical.retina.core.Compare.CompareModel;
 import io.cortical.retina.core.Endpoints;
 import io.cortical.retina.core.ImageEncoding;
@@ -32,6 +27,9 @@ import io.cortical.retina.model.Retina;
 import io.cortical.retina.model.Term;
 import io.cortical.retina.model.Text;
 import io.cortical.retina.rest.ApiException;
+import java.io.ByteArrayInputStream;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -41,7 +39,7 @@ public class FullClient {
     /** The default number of results to return */
     private static final int MAX_RESULTS = 10;
     /** Default scaling factor of images api. */
-    public static final int DEFAULT_SCALING_FACTOR = 1;
+    public static final int DEFAULT_SCALING_FACTOR = 2;
     /** Specifies max percentage of on bits out of the representational whole. */
     public static final double DEFAULT_SPARSITY = 1.0;
     

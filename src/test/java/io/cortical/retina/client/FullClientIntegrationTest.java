@@ -9,6 +9,7 @@ package io.cortical.retina.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cortical.retina.core.Compare.CompareModel;
+import io.cortical.retina.core.ImageEncoding;
 import io.cortical.retina.core.ImagePlotShape;
 import io.cortical.retina.core.PosTag;
 import io.cortical.retina.core.PosType;
@@ -23,7 +24,6 @@ import io.cortical.retina.model.Retina;
 import io.cortical.retina.model.Term;
 import io.cortical.retina.model.Text;
 import io.cortical.retina.rest.ApiException;
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -294,7 +294,7 @@ public class FullClientIntegrationTest {
         Assert.assertTrue(resultMetric.getOverlappingLeftRight() > 0.1);
         Assert.assertTrue(resultMetric.getOverlappingAll() > 10);
         Assert.assertTrue(resultMetric.getOverlappingRightLeft() > 0.1);
-
+        
         // Make multiple comparisons in a single call
         List<CompareModel> compareModels = new ArrayList<CompareModel>();
         CompareModel comparison1 = new CompareModel(new Term("synapse"), new Term("skylab"));
@@ -303,7 +303,7 @@ public class FullClientIntegrationTest {
         compareModels.add(comparison2);
         Metric[] compareBulk = fullClient.compareBulk(compareModels);
         Assert.assertEquals(2, compareBulk.length);
-        for (Metric metric: compareBulk) {
+        for (Metric metric : compareBulk) {
             Assert.assertTrue(metric.getCosineSimilarity() > 0.01);
             Assert.assertTrue(metric.getEuclideanDistance() > 0.01);
             Assert.assertTrue(metric.getJaccardDistance() > 0.01);
@@ -315,20 +315,23 @@ public class FullClientIntegrationTest {
             Assert.assertTrue(metric.getOverlappingRightLeft() > 0.01);
         }
     }
-
+    
     @Test
     public void testImage() throws JsonProcessingException, ApiException {
         // Create an image from an expression
-        ByteArrayInputStream image = fullClient.getImage(new Term("term"));
-        System.out.println(image);
-        Assert.assertNotNull(image);
-        
+        Assert.assertNotNull(fullClient.getImage(new Term("java")));
+        Assert.assertNotNull(
+                fullClient.getImage(new Term("java"), 2, ImagePlotShape.CIRCLE, ImageEncoding.BASE64_PNG, 1.0));
+        Assert.assertNotNull(
+                fullClient.getImage(new Term("java"), 2, ImagePlotShape.CIRCLE, ImageEncoding.BINARY_PNG, 1.0));
+                
         // Create a composite image showing the visual overlap between two expressions
         List<Model> twoItems = new ArrayList<Model>();
         twoItems.add(new Term("java"));
         twoItems.add(new Text(javaText));
-        ByteArrayInputStream compareImage = fullClient.compareImage(twoItems);
-        Assert.assertNotNull(compareImage);        
+        Assert.assertNotNull(fullClient.compareImage(twoItems));
+        Assert.assertNotNull(fullClient.compareImage(twoItems, 2, ImagePlotShape.SQUARE, ImageEncoding.BASE64_PNG));
+        Assert.assertNotNull(fullClient.compareImage(twoItems, 2, ImagePlotShape.SQUARE, ImageEncoding.BINARY_PNG));
         
         // Create multiple images from multiple expressions in a single call
         List<Model> expressions = new ArrayList<Model>();
@@ -344,7 +347,7 @@ public class FullClientIntegrationTest {
             Assert.assertEquals(0, img.getFingerprint().getPositions().length);
             Assert.assertNotNull(img.getImageData());
         }
-
+        
         List<Image> images2 = fullClient.getImages(expressions, true, 2, ImagePlotShape.SQUARE, 1.0);
         for (Image img : images2) {
             Assert.assertNotNull(img);
