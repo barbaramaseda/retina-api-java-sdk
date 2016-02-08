@@ -9,6 +9,7 @@ package io.cortical.retina.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cortical.retina.core.Compare.CompareModel;
+import io.cortical.retina.core.ImagePlotShape;
 import io.cortical.retina.core.PosTag;
 import io.cortical.retina.core.PosType;
 import io.cortical.retina.model.CategoryFilter;
@@ -294,7 +295,6 @@ public class FullClientIntegrationTest {
         Assert.assertTrue(resultMetric.getOverlappingAll() > 10);
         Assert.assertTrue(resultMetric.getOverlappingRightLeft() > 0.1);
 
-          
         // Make multiple comparisons in a single call
         List<CompareModel> compareModels = new ArrayList<CompareModel>();
         CompareModel comparison1 = new CompareModel(new Term("synapse"), new Term("skylab"));
@@ -318,28 +318,51 @@ public class FullClientIntegrationTest {
 
     @Test
     public void testImage() throws JsonProcessingException, ApiException {
+        // Create an image from an expression
+        ByteArrayInputStream image = fullClient.getImage(new Term("term"));
+        System.out.println(image);
+        Assert.assertNotNull(image);
+        
+        // Create a composite image showing the visual overlap between two expressions
+        List<Model> twoItems = new ArrayList<Model>();
+        twoItems.add(new Term("java"));
+        twoItems.add(new Text(javaText));
+        ByteArrayInputStream compareImage = fullClient.compareImage(twoItems);
+        Assert.assertNotNull(compareImage);        
+        
+        // Create multiple images from multiple expressions in a single call
         List<Model> expressions = new ArrayList<Model>();
         expressions.add(new Text(javaText));
         expressions.add(new Text(javascriptText));
         expressions.add(new Term("java"));
+        
+        List<Image> images1 = fullClient.getImages(expressions);
+        Assert.assertEquals(3, images1.size());
+        for (Image img : images1) {
+            System.out.println(img);
+            Assert.assertNotNull(img);
+            Assert.assertEquals(0, img.getFingerprint().getPositions().length);
+            Assert.assertNotNull(img.getImageData());
+        }
 
-        // Create an image from an expression
-        ByteArrayInputStream image = fullClient.getImage(new Term("synapse"));
-        
-        // Create multiple images from multiple expressions in a single call
-        List<Image> images = fullClient.getImages(expressions);
-        
-        // Create a composite image showing the visual overlap between two expressions
-        ByteArrayInputStream compareImage = fullClient.compareImage(expressions);
-        
+        List<Image> images2 = fullClient.getImages(expressions, true, 2, ImagePlotShape.SQUARE, 1.0);
+        for (Image img : images2) {
+            Assert.assertNotNull(img);
+            System.out.println(img);
+            Assert.assertTrue(img.getFingerprint().getPositions().length > 50);
+            Assert.assertNotNull(img.getImageData());
+        }
     }
     
     
     @Test
     public void testClassify() throws ApiException, JsonProcessingException {
-        
         // Create a filter Fingerprint from example texts that should "pass through" the filter
-        CategoryFilter createCategoryFilter = fullClient.createCategoryFilter("test_filter", null, null);
-        
+        List<String> positiveExamples = new ArrayList<String>();
+        positiveExamples.add(javaText);
+        positiveExamples.add(javascriptText);
+        CategoryFilter categoryFilter = fullClient.createCategoryFilter("test_filter", positiveExamples, null);
+        Assert.assertEquals("test_filter", categoryFilter.getCategoryName());
+        Assert.assertTrue(categoryFilter.getPositions().length > 50);
     }
 }
