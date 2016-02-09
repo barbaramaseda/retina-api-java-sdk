@@ -34,7 +34,7 @@ If you just need the JAR file, this can be downloaded directly from the <a href=
 </dependency>
 ```
 
-For non-Maven projects you need to use the ```retina-api-java-sdk-1.0.0-jar-with-dependencies``` (e.g. when directly calling the java client).
+For non-Maven projects you need to use the ```retina-api-java-sdk-1.0.1-jar-with-dependencies``` (e.g. when directly calling the java client).
 
 ### Building
 
