@@ -7,6 +7,14 @@
  ******************************************************************************/
 package io.cortical.retina.client;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cortical.retina.core.Compare.CompareModel;
 import io.cortical.retina.core.ImageEncoding;
@@ -24,14 +32,6 @@ import io.cortical.retina.model.Retina;
 import io.cortical.retina.model.Term;
 import io.cortical.retina.model.Text;
 import io.cortical.retina.rest.ApiException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 
 public class FullClientIntegrationTest {
@@ -329,6 +329,7 @@ public class FullClientIntegrationTest {
         List<Model> twoItems = new ArrayList<Model>();
         twoItems.add(new Term("java"));
         twoItems.add(new Text(javaText));
+
         Assert.assertNotNull(fullClient.compareImage(twoItems));
         Assert.assertNotNull(fullClient.compareImage(twoItems, 2, ImagePlotShape.SQUARE, ImageEncoding.BASE64_PNG));
         Assert.assertNotNull(fullClient.compareImage(twoItems, 2, ImagePlotShape.SQUARE, ImageEncoding.BINARY_PNG));
@@ -342,7 +343,6 @@ public class FullClientIntegrationTest {
         List<Image> images1 = fullClient.getImages(expressions);
         Assert.assertEquals(3, images1.size());
         for (Image img : images1) {
-            System.out.println(img);
             Assert.assertNotNull(img);
             Assert.assertEquals(0, img.getFingerprint().getPositions().length);
             Assert.assertNotNull(img.getImageData());
@@ -351,7 +351,6 @@ public class FullClientIntegrationTest {
         List<Image> images2 = fullClient.getImages(expressions, true, 2, ImagePlotShape.SQUARE, 1.0);
         for (Image img : images2) {
             Assert.assertNotNull(img);
-            System.out.println(img);
             Assert.assertTrue(img.getFingerprint().getPositions().length > 50);
             Assert.assertNotNull(img.getImageData());
         }

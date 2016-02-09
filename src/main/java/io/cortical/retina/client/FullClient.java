@@ -7,6 +7,9 @@
  ******************************************************************************/
 package io.cortical.retina.client;
 
+import java.io.ByteArrayInputStream;
+import java.util.List;
+import java.util.Set;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cortical.retina.core.Compare.CompareModel;
 import io.cortical.retina.core.Endpoints;
@@ -27,9 +30,6 @@ import io.cortical.retina.model.Retina;
 import io.cortical.retina.model.Term;
 import io.cortical.retina.model.Text;
 import io.cortical.retina.rest.ApiException;
-import java.io.ByteArrayInputStream;
-import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -65,7 +65,7 @@ public class FullClient {
         this(apiKey, DEFAULT_SERVER, DEFAULT_RETINA);
     }
     
-
+    
     /**
      * Creates a new instance of {@link FullClient} using the default server.
      * 
@@ -119,7 +119,7 @@ public class FullClient {
      * @throws ApiException if there are server or connection issues.
      */
     public List<Term> getTerms(String term) throws ApiException {
-    	return endpoints.termsApi().getTerms(term, 0, MAX_RESULTS, false);
+        return endpoints.termsApi().getTerms(term, 0, MAX_RESULTS, false);
     }
     
     /**
@@ -448,7 +448,7 @@ public class FullClient {
             boolean getFingerprint) throws JsonProcessingException, ApiException {
             
         return endpoints.expressionsApi().getContextsForExpression(model, startIndex, maxResults, sparsity,
-            getFingerprint);
+                getFingerprint);
     }
     
     /**
@@ -654,8 +654,8 @@ public class FullClient {
      * @throws ApiException : if there are some server or connection issues.
      */
     public ByteArrayInputStream getImage(Model model) throws JsonProcessingException, ApiException {
-        return endpoints.imageApi().getImage(model, DEFAULT_SCALING_FACTOR, ImagePlotShape.CIRCLE,
-                ImageEncoding.BASE64_PNG, DEFAULT_SPARSITY);
+        return getImage(model, DEFAULT_SCALING_FACTOR, ImagePlotShape.CIRCLE, ImageEncoding.BASE64_PNG,
+                DEFAULT_SPARSITY);
     }
     
     /**
@@ -699,9 +699,8 @@ public class FullClient {
      * @throws JsonProcessingException if it is impossible to generate the request using the input model(s).
      * @throws ApiException : if there are some server or connection issues.
      */
-    public ByteArrayInputStream getImage(Model model, int scalar, ImagePlotShape shape, ImageEncoding imageEncoding,
-            double sparsity) throws JsonProcessingException, ApiException {
-            
+    public ByteArrayInputStream getImage(Model model, int scalar, ImagePlotShape shape, ImageEncoding imageEncoding, double sparsity)
+            throws JsonProcessingException, ApiException {
         return endpoints.imageApi().getImage(model, scalar, shape, imageEncoding, sparsity);
     }
     
