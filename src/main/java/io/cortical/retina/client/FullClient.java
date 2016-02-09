@@ -654,7 +654,7 @@ public class FullClient {
      * @throws ApiException : if there are some server or connection issues.
      */
     public ByteArrayInputStream getImage(Model model) throws JsonProcessingException, ApiException {
-        return getImage(model, DEFAULT_SCALING_FACTOR, ImagePlotShape.CIRCLE, ImageEncoding.BASE64_PNG,
+        return getImage(model, DEFAULT_SCALING_FACTOR, ImagePlotShape.CIRCLE, ImageEncoding.BINARY_PNG,
                 DEFAULT_SPARSITY);
     }
     
