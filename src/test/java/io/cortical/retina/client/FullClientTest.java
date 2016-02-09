@@ -1,5 +1,37 @@
 package io.cortical.retina.client;
 
+import static io.cortical.retina.core.ApiTestUtils.NOT_NULL_API_KEY;
+import static io.cortical.retina.core.ApiTestUtils.NOT_NULL_BASE_PATH;
+import static io.cortical.retina.core.ApiTestUtils.NOT_NULL_RETINA;
+import static io.cortical.retina.model.TestDataHarness.createContexts;
+import static io.cortical.retina.model.TestDataHarness.createFingerprint;
+import static io.cortical.retina.model.TestDataHarness.createFingerprints;
+import static io.cortical.retina.model.TestDataHarness.createLanguage;
+import static io.cortical.retina.model.TestDataHarness.createStrings;
+import static io.cortical.retina.model.TestDataHarness.createTerms;
+import static io.cortical.retina.model.TestDataHarness.createTexts;
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cortical.retina.core.Classify;
 import io.cortical.retina.core.Compare;
@@ -23,38 +55,6 @@ import io.cortical.retina.model.Model;
 import io.cortical.retina.model.Term;
 import io.cortical.retina.model.Text;
 import io.cortical.retina.rest.ApiException;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import static io.cortical.retina.core.ApiTestUtils.NOT_NULL_API_KEY;
-import static io.cortical.retina.core.ApiTestUtils.NOT_NULL_BASE_PATH;
-import static io.cortical.retina.core.ApiTestUtils.NOT_NULL_RETINA;
-import static io.cortical.retina.model.TestDataHarness.createContexts;
-import static io.cortical.retina.model.TestDataHarness.createFingerprint;
-import static io.cortical.retina.model.TestDataHarness.createFingerprints;
-import static io.cortical.retina.model.TestDataHarness.createLanguage;
-import static io.cortical.retina.model.TestDataHarness.createStrings;
-import static io.cortical.retina.model.TestDataHarness.createTerms;
-import static io.cortical.retina.model.TestDataHarness.createTexts;
-import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 
 public class FullClientTest {
@@ -642,7 +642,7 @@ public class FullClientTest {
     @Test
     public void testGetImage() throws ApiException, IOException {
         ImagePlotShape shape = ImagePlotShape.CIRCLE;
-        ImageEncoding encoding = ImageEncoding.BASE64_PNG;
+        ImageEncoding encoding = ImageEncoding.BINARY_PNG;
         double sparsity = FullClient.DEFAULT_SPARSITY;
         
         when(endpoints.imageApi()).thenReturn(images);
