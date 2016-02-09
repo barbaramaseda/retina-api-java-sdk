@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>io.cortical</groupId>
 	<artifactId>retina-api-java-sdk</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>cortical.io's java client - a simple java http client which simplifies communication between any java application and the Retina server using the Retina's REST API.</description>
@@ -136,6 +136,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
 		</dependency>
 
 		<!-- test dependencies -->

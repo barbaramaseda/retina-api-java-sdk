@@ -74,7 +74,7 @@ public class Images extends AbstractEndpoint {
         if (imageEncoding != null) {
             encodingString = imageEncoding.machineRepresentation();
         }
-        
+
         return api.getImageForExpression(model.toJson(), retinaName, scalar, shapeString, encodingString, sparsity);
     }
     

@@ -30,7 +30,7 @@ If you just need the JAR file, this can be downloaded directly from the <a href=
 <dependency>
     <groupId>io.cortical</groupId>
     <artifactId>retina-api-java-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -250,6 +250,9 @@ clients modules.
 If you have any questions or problems please visit our [forum](http://www.cortical.io/resources_forum.html).
 
 ## Change Log
+**v 1.0.1**
+* Improved image handling.
+
 **v 1.0.0**
 * Initial release.
 * Refactoring and migrating project from pervious GitHub repo. 
