@@ -140,6 +140,7 @@ public class ApiInvoker {
         , Map<String, String> headerParams, String contentType) throws ApiException {
         Client client = getClient(host);
 
+        headerParams.put("api-client", "java_1.0.0");
         StringBuilder b = new StringBuilder();
 
         for(String key : queryParams.keySet()) {
