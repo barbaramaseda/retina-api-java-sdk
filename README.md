@@ -68,7 +68,7 @@ lightweight client by passing your API key as follows:
 
 ```java
 // Create "lightweight" LiteClient instance
-LiteClient lite = new io.cortical.retina.client.LiteClient("your_api_key");
+LiteClient lite = new io.cortical.retina.client.LiteClient(your_api_key);
 ```
 
 Once you've created a client instance, you can start using it to make calls to the Retina API. Here some examples, the 
@@ -120,7 +120,7 @@ As with the LiteClient, the FullClient must be instantiated with a valid Cortica
 
 ```java
 // Create FullClient instance
-FullClient fullClient = new FullClient("your_api_key");
+FullClient fullClient = new FullClient(your_api_key);
 ```
 
 Additional parameters can also be passed when creating a FullClient instance to specify the host address (in case you have access to your own Retina API service, for example by running your own AWS or Azure instance) and Retina name, so you can configure a specific Retina for subsequent calls.
@@ -159,7 +159,7 @@ List<Term> terms = fullClient.getSimilarTermsForExpression(orExpression);
 
 ```java
 // Create FullClient instance
-FullClient fullClient = new FullClient("c109d280-73ec-11e4-a595-532580ca217d");
+FullClient fullClient = new FullClient(your_api_key);
 
 // Retrieve an array of all available Retinas
 List<Retina> retinas = fullClient.getRetinas();
