@@ -255,4 +255,4 @@ If you have any questions or problems please visit our [forum](http://www.cortic
 
 **v 1.0.0**
 * Initial release.
-* Refactoring and migrating project from pervious GitHub repo. 
+* Refactoring and migrating project from previous GitHub repo. 
