@@ -87,6 +87,7 @@
                 <version>2.10.3</version>
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
