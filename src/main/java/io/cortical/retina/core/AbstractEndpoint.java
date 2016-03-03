@@ -109,7 +109,7 @@ abstract class AbstractEndpoint {
      * 
      * @param models    models to be converted to a json array.
      * @return the array in json format.
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException if a problem occurs during parsing
      */
     protected String toJson(Model... models) throws JsonProcessingException {
         return Model.toJson(models);
@@ -120,7 +120,7 @@ abstract class AbstractEndpoint {
      * 
      * @param models    models to be converted to a json array.
      * @return the array in json format.
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException if a problem occurs during parsing
      */
     protected <T extends Model> String toJson(List<T> models) throws JsonProcessingException {
         return Model.toJson(models);
@@ -131,7 +131,7 @@ abstract class AbstractEndpoint {
      * 
      * @param modelsArrays  arrays of models to be converted to json.
      * @return the array in json format.
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException if a problem occurs during parsing
      */
     public static String toJsonBulk(Model[]... modelsArrays) throws JsonProcessingException {
         return Model.toJsonBulk(modelsArrays);

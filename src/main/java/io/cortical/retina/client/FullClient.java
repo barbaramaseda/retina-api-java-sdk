@@ -593,13 +593,13 @@ public class FullClient {
     /**
      * <p>
      * Compares pairs of models in bulk.
-     * </p><p>
+     * </p>
      * <pre>
      * To create a CompareModel...
      * 
      * CompareModel model = new CompareModel(Model model1, Model model2);
      * </pre>
-     * </p>
+     * 
      * Where "Model" can be any subtype such as:
      * <UL>
      *  <li>Term</li>
@@ -627,7 +627,7 @@ public class FullClient {
      *  <li> Image Encoding = {@link ImageEncoding#BASE64_PNG}</li>
      *  <li> sparsity = null (uses default Fingerprint sparsity)
      * </UL>
-     * </p><p>
+     * <p>
      * <b>To create image in memory:</b>
      * <pre>
      *  try {
@@ -645,7 +645,6 @@ public class FullClient {
      *      System.out.println(e.getMessage());
      *  }
      * </pre>
-     * </p>
      * 
      * @param model             the {@link Model} subtype for which an image is generated.
      * 
@@ -669,7 +668,7 @@ public class FullClient {
      *  <li> Image Encoding = {@link ImageEncoding#BASE64_PNG}</li>
      *  <li> sparsity = null (uses default Fingerprint sparsity)
      * </UL>
-     * </p><p>
+     * <p>
      * <b>To create image in memory:</b>
      * <pre>
      *  try {
@@ -687,7 +686,6 @@ public class FullClient {
      *      System.out.println(e.getMessage());
      *  }
      * </pre>
-     * </p>
      * 
      * @param model             the {@link Model} subtype for which an image is generated.
      * @param scalar            scaling factor of the image to generate

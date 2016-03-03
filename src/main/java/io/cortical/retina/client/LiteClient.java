@@ -71,8 +71,8 @@ public class LiteClient {
      * @param   string  the text to find similar terms for
      * 
      * @return  a list of similar terms
-     * @throws ApiException 
-     * @throws JsonProcessingException 
+     * @throws ApiException for api oriented errors
+     * @throws JsonProcessingException if parsing problem occurs
      */
     public List<String> getSimilarTerms(String string) throws JsonProcessingException, ApiException {
         List<Term> terms = delegate.getSimilarTermsForExpression(new Text(string), 0, 20, Context.ANY_ID, PosType.ANY, 
@@ -85,8 +85,8 @@ public class LiteClient {
      * 
      * @param fingerprint the int array to find similar terms for
      * @return  a list of similar terms
-     * @throws ApiException 
-     * @throws JsonProcessingException 
+     * @throws ApiException  for api oriented errors
+     * @throws JsonProcessingException if parsing problem occurs 
      */
     public List<String> getSimilarTerms(int[] fingerprint) throws JsonProcessingException, ApiException {
         List<Term> terms = delegate.getSimilarTermsForExpression(new Fingerprint(fingerprint), 0, 20, Context.ANY_ID,
@@ -98,7 +98,7 @@ public class LiteClient {
      * Returns the keywords of the input text.
      * @param text  the text out of which keywords will be returned 
      * @return a list of keywords
-     * @throws ApiException 
+     * @throws ApiException  for api oriented errors
      */
     public List<String> getKeywords(String text) throws ApiException {
         return delegate.getKeywordsForText(text);
@@ -108,8 +108,8 @@ public class LiteClient {
      * Returns the semantic fingerprint of the input string.
      * @param string    the text for which to return a fingerprint. 
      * @return fingerprint the positions of the semantic fingerprint
-     * @throws ApiException 
-     * @throws JsonProcessingException 
+     * @throws ApiException  for api oriented errors
+     * @throws JsonProcessingException if parsing problem occurs 
      */
     public int[] getFingerprint(String string) throws JsonProcessingException, ApiException {
         if (isEmpty(string)) {
@@ -124,8 +124,8 @@ public class LiteClient {
      * @param string1      first element of comparison
      * @param string2      second element of comparison
      * @return similarity metric of comparison
-     * @throws ApiException 
-     * @throws JsonProcessingException
+     * @throws ApiException for api oriented errors 
+     * @throws JsonProcessingException if parsing problem occurs
      */
     public double compare(String string1, String string2) throws JsonProcessingException, ApiException {
         if (isEmpty(string1) || isEmpty(string2)) {
@@ -145,7 +145,7 @@ public class LiteClient {
      * @param fingerprint1      first element of comparison
      * @param fingerprint2      second element of comparison
      * @return similarity metric of comparison
-     * @throws ApiException 
+     * @throws ApiException for api oriented errors 
      * @throws JsonProcessingException 
      */
     public double compare(int[] fingerprint1, int[] fingerprint2) throws ApiException, JsonProcessingException {
@@ -166,8 +166,8 @@ public class LiteClient {
      * @param string        first element of comparison
      * @param fingerprint   second element of comparison
      * @return similarity metric of comparison
-     * @throws ApiException 
-     * @throws JsonProcessingException 
+     * @throws ApiException for api oriented errors 
+     * @throws JsonProcessingException  if parsing problem occurs
      */
     public double compare(String string, int[] fingerprint) throws ApiException, JsonProcessingException {
         if (isEmpty(string) || fingerprint == null) {
@@ -187,8 +187,8 @@ public class LiteClient {
      * Create a fingerprint representing a list of sample texts.
      * @param positiveExamples  text strings containing positive examples.
      * @return a fingerprint containing semantic filter positions
-     * @throws ApiException 
-     * @throws JsonProcessingException 
+     * @throws ApiException for api oriented errors 
+     * @throws JsonProcessingException if parsing problem occurs 
      */
     public int[] createCategoryFilter(List<String> positiveExamples) throws JsonProcessingException, ApiException {
         return delegate.createCategoryFilter("anonymous", positiveExamples, null).getPositions();

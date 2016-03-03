@@ -88,7 +88,7 @@ public class Endpoints {
     
     /**
      * Returns the request proxy for the {@link Compare} endpoint
-     * @return
+     * @return  the request proxy for the {@link Compare} endpoint
      */
     public Compare compareApi() {
         return compareApi;
@@ -96,7 +96,7 @@ public class Endpoints {
     
     /**
      * Returns the request proxy for the {@link Compare} endpoint
-     * @return
+     * @return  the request proxy for the {@link Compare} endpoint
      */
     public Expressions expressionsApi() {
         return expressionsApi;
@@ -104,7 +104,7 @@ public class Endpoints {
     
     /**
      * Returns the request proxy for the {@link Images} endpoint
-     * @return
+     * @return  the request proxy for the {@link Images} endpoint
      */
     public Images imageApi() {
         return imageApi;
@@ -112,7 +112,7 @@ public class Endpoints {
     
     /**
      * Returns the request proxy for the {@link Terms} endpoint
-     * @return
+     * @return  the request proxy for the {@link Terms} endpoint
      */
     public Terms termsApi() {
         return termsApi;
@@ -120,7 +120,7 @@ public class Endpoints {
     
     /**
      * Returns the request proxy for the {@link Texts} endpoint
-     * @return
+     * @return  the request proxy for the {@link Texts} endpoint
      */
     public Texts textApi() {
         return textApi;
@@ -128,7 +128,7 @@ public class Endpoints {
     
     /**
      * Returns the request proxy for the {@link Classify} endpoint
-     * @return
+     * @return  the request proxy for the {@link Classify} endpoint
      */
     public Classify classifyApi() {
         return classifyApi;
@@ -144,7 +144,7 @@ public class Endpoints {
     
     /**
      * Find retina by name.
-     * @param name : the retina's name.
+     * @param name the retina's name.
      * 
      * @return retina found by name or null if there is no such retina.
      */
@@ -159,9 +159,9 @@ public class Endpoints {
     /**
      * Generate the base path for the retina.
      * 
-     * @param ip : retina server ip.
-     * @param port : retina service port. 
-     * @return : the retina's API base path.
+     * @param ip retina server ip.
+     * @param port retina service port. 
+     * @return the retina's API base path.
      */
     public static String generateBasepath(String protocol, String ip, int port, String path) {
         if (isEmpty(ip)) {

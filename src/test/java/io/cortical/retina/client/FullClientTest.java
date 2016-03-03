@@ -20,19 +20,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cortical.retina.core.Classify;
 import io.cortical.retina.core.Compare;
 import io.cortical.retina.core.Compare.CompareModel;
@@ -55,6 +42,22 @@ import io.cortical.retina.model.Model;
 import io.cortical.retina.model.Term;
 import io.cortical.retina.model.Text;
 import io.cortical.retina.rest.ApiException;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 
 public class FullClientTest {
