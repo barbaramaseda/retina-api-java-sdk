@@ -7,11 +7,12 @@
  ******************************************************************************/
 package io.cortical.retina.rest;
 
-import io.cortical.retina.model.Image;
-
+import java.io.FilterInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.io.IOUtils;
+import io.cortical.retina.model.Image;
 
 /** Generated. **/
 public class ImageApi {
@@ -52,58 +53,68 @@ public class ImageApi {
     /** Generated. 
     *@throws ApiException if an error occurs during querying of the API.
     *@return java.io.ByteArrayInputStream **/
-    public java.io.ByteArrayInputStream getImageForExpression (String body, String retina_name, int image_scalar, String plot_shape, String image_encoding, double sparsity) throws ApiException {
+    public java.io.ByteArrayInputStream getImageForExpression(String body, String retina_name, int image_scalar,
+            String plot_shape, String image_encoding, double sparsity) throws ApiException {
         // verify required params are set
-        if(retina_name == null || body == null ) {
-             throw new ApiException(400, "missing required params");
+        if (retina_name == null || body == null) {
+            throw new ApiException(400, "missing required params");
         }
         // create path and map variables
-        String path = "/image".replaceAll("\\{format\\}","json");
-
+        String path = "/image".replaceAll("\\{format\\}", "json");
+        
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
         Map<String, String> headerParams = new HashMap<String, String>();
-
-        if(!"null".equals(String.valueOf(retina_name)))
+        
+        if (!"null".equals(String.valueOf(retina_name)))
             queryParams.put("retina_name", String.valueOf(retina_name));
-        if(!"null".equals(String.valueOf(image_scalar)))
+        if (!"null".equals(String.valueOf(image_scalar)))
             queryParams.put("image_scalar", String.valueOf(image_scalar));
-        if(!"null".equals(String.valueOf(plot_shape)))
+        if (!"null".equals(String.valueOf(plot_shape)))
             queryParams.put("plot_shape", String.valueOf(plot_shape));
-        if(!"null".equals(String.valueOf(image_encoding)))
+        if (!"null".equals(String.valueOf(image_encoding)))
             queryParams.put("image_encoding", String.valueOf(image_encoding));
-        if(!"null".equals(String.valueOf(sparsity)))
+        if (!"null".equals(String.valueOf(sparsity)))
             queryParams.put("sparsity", String.valueOf(sparsity));
         String contentType = "application/json";
-
+        
         try {
-            Object response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams
-                , body, headerParams, contentType);
-            if(response != null) {
+            Object response =
+                    apiInvoker.invokeAPI(basePath, path, "POST", queryParams, body, headerParams, contentType);
+            if (response != null) {
                 if (response instanceof String) {
-                    java.io.ByteArrayInputStream result = 
-                        (java.io.ByteArrayInputStream)ApiInvoker.deserialize((String) response, "",
-                            java.io.ByteArrayInputStream.class, null);
+                    java.io.ByteArrayInputStream result = (java.io.ByteArrayInputStream) ApiInvoker.deserialize((String) response, "", java.io.ByteArrayInputStream.class, null);
                     return result;
                 }
                 else if (response instanceof java.io.ByteArrayInputStream) {
-                    java.io.ByteArrayInputStream result = (java.io.ByteArrayInputStream)response;
+                    java.io.ByteArrayInputStream result = (java.io.ByteArrayInputStream) response;
                     return result;
                 }
-                
+                else if (response instanceof FilterInputStream) {
+                    try {
+                        FilterInputStream inputStream = (FilterInputStream) response;
+                        byte[] bytes = IOUtils.toByteArray(inputStream);
+                        return new java.io.ByteArrayInputStream(bytes);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             else {
                 return null;
             }
-        } catch (ApiException ex) {
-            if(ex.getCode() == 404) {
-            	return null;
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == 404) {
+                return null;
             }
             else {
                 throw ex;
             }
         }
-        return null;}
+        return null;
+    }
     /** Generated. 
     *@throws ApiException if an error occurs during querying of the API.
     *@return java.io.ByteArrayInputStream **/
@@ -134,15 +145,24 @@ public class ImageApi {
                 , body, headerParams, contentType);
             if(response != null) {
                 if (response instanceof String) {
-                    java.io.ByteArrayInputStream result = (java.io.ByteArrayInputStream) ApiInvoker.deserialize( (String) response,
-                        "", java.io.ByteArrayInputStream.class, null);
+                    java.io.ByteArrayInputStream result = (java.io.ByteArrayInputStream) ApiInvoker
+                            .deserialize((String) response, "", java.io.ByteArrayInputStream.class, null);
                     return result;
                 }
                 else if (response instanceof java.io.ByteArrayInputStream) {
                     java.io.ByteArrayInputStream result = (java.io.ByteArrayInputStream) response;
                     return result;
                 }
-                
+                else if (response instanceof FilterInputStream) {
+                    try {
+                        FilterInputStream inputStream = (FilterInputStream) response;
+                        byte[] bytes = IOUtils.toByteArray(inputStream);
+                        return new java.io.ByteArrayInputStream(bytes);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             else {
                 return null;
@@ -159,56 +179,58 @@ public class ImageApi {
     /** Generated. 
     *@throws ApiException if an error occurs during querying of the API.
     *@return List<Image> **/
-    public List<Image> getImageForBulkExpressions (String body, boolean get_fingerprint, String retina_name, int image_scalar, String plot_shape, double sparsity) throws ApiException {
+    public List<Image> getImageForBulkExpressions(String body, boolean get_fingerprint, String retina_name,
+            int image_scalar, String plot_shape, double sparsity) throws ApiException {
         // verify required params are set
-        if(retina_name == null || body == null ) {
-             throw new ApiException(400, "missing required params");
+        if (retina_name == null || body == null) {
+            throw new ApiException(400, "missing required params");
         }
         // create path and map variables
-        String path = "/image/bulk".replaceAll("\\{format\\}","json");
-
+        String path = "/image/bulk".replaceAll("\\{format\\}", "json");
+        
         // query params
         Map<String, String> queryParams = new HashMap<String, String>();
         Map<String, String> headerParams = new HashMap<String, String>();
-
-        if(!"null".equals(String.valueOf(retina_name)))
+        
+        if (!"null".equals(String.valueOf(retina_name)))
             queryParams.put("retina_name", String.valueOf(retina_name));
-        if(!"null".equals(String.valueOf(image_scalar)))
+        if (!"null".equals(String.valueOf(image_scalar)))
             queryParams.put("image_scalar", String.valueOf(image_scalar));
-        if(!"null".equals(String.valueOf(plot_shape)))
+        if (!"null".equals(String.valueOf(plot_shape)))
             queryParams.put("plot_shape", String.valueOf(plot_shape));
-        if(!"null".equals(String.valueOf(sparsity)))
+        if (!"null".equals(String.valueOf(sparsity)))
             queryParams.put("sparsity", String.valueOf(sparsity));
-        if(!"null".equals(String.valueOf(get_fingerprint)))
+        if (!"null".equals(String.valueOf(get_fingerprint)))
             queryParams.put("get_fingerprint", String.valueOf(get_fingerprint));
         String contentType = "application/json";
-
+        
         try {
-            Object response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams
-                , body, headerParams, contentType);
-            if(response != null) {
+            Object response =
+                    apiInvoker.invokeAPI(basePath, path, "POST", queryParams, body, headerParams, contentType);
+            if (response != null) {
                 if (response instanceof String) {
-                        @SuppressWarnings("unchecked")
-                        List<Image> result = (List<Image>) ApiInvoker.deserialize( (String) response, "Array"
-                                , Image.class, null);return result;
+                    @SuppressWarnings("unchecked") List<Image> result =
+                            (List<Image>) ApiInvoker.deserialize((String) response, "Array", Image.class, null);
+                    return result;
                 }
                 else if (response instanceof java.io.ByteArrayInputStream) {
-                        @SuppressWarnings("unchecked")
-                        List<Image> result =    (List<Image>) response;return result;
+                    @SuppressWarnings("unchecked") List<Image> result = (List<Image>) response;
+                    return result;
                 }
-                
             }
             else {
                 return null;
             }
-        } catch (ApiException ex) {
-            if(ex.getCode() == 404) {
-            	return null;
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == 404) {
+                return null;
             }
             else {
                 throw ex;
             }
         }
-        return null;}
+        return null;
     }
+}
 

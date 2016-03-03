@@ -12,9 +12,9 @@ Cortical.io's Retina API allows the user to perform semantic operations on text.
 * create a semantic classifier based on positive and negative example texts
 * extract keywords from a text
 * divide a text into sub-sections corresponding to semantic changes
-* extract terms from a text based on part of speech tags
+* extract terms from text based on part-of-speech tags
 
-The meaning of terms and texts is stored in a sparse binary representation that allows the user to apply logical 
+The meaning of terms and text is stored in a sparse binary representation that allows the user to apply logical 
 operators to refine the semantic representation of a concept.
 
 You can read more about the technology at the [documentation page](http://documentation.cortical.io/intro.html).
@@ -30,11 +30,11 @@ If you just need the JAR file, this can be downloaded directly from the <a href=
 <dependency>
     <groupId>io.cortical</groupId>
     <artifactId>retina-api-java-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
-For non-Maven projects you need to use the ```retina-api-java-sdk-1.0.0-jar-with-dependencies``` (e.g. when directly calling the java client).
+For non-Maven projects you need to use the ```retina-api-java-sdk-1.0.1-jar-with-dependencies``` (e.g. when directly calling the java client).
 
 ### Building
 
@@ -68,7 +68,7 @@ lightweight client by passing your API key as follows:
 
 ```java
 // Create "lightweight" LiteClient instance
-LiteClient lite = new io.cortical.retina.client.LiteClient("your_api_key");
+LiteClient lite = new io.cortical.retina.client.LiteClient(your_api_key);
 ```
 
 Once you've created a client instance, you can start using it to make calls to the Retina API. Here some examples, the 
@@ -120,7 +120,7 @@ As with the LiteClient, the FullClient must be instantiated with a valid Cortica
 
 ```java
 // Create FullClient instance
-FullClient fullClient = new FullClient("your_api_key");
+FullClient fullClient = new FullClient(your_api_key);
 ```
 
 Additional parameters can also be passed when creating a FullClient instance to specify the host address (in case you have access to your own Retina API service, for example by running your own AWS or Azure instance) and Retina name, so you can configure a specific Retina for subsequent calls.
@@ -159,7 +159,7 @@ List<Term> terms = fullClient.getSimilarTermsForExpression(orExpression);
 
 ```java
 // Create FullClient instance
-FullClient fullClient = new FullClient("c109d280-73ec-11e4-a595-532580ca217d");
+FullClient fullClient = new FullClient(your_api_key);
 
 // Retrieve an array of all available Retinas
 List<Retina> retinas = fullClient.getRetinas();
@@ -250,6 +250,9 @@ clients modules.
 If you have any questions or problems please visit our [forum](http://www.cortical.io/resources_forum.html).
 
 ## Change Log
+**v 1.0.1**
+* Improved image handling.
+
 **v 1.0.0**
 * Initial release.
-* Refactoring and migrating project from pervious GitHub repo. 
+* Refactoring and migrating project from previous GitHub repo. 
