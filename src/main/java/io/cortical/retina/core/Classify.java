@@ -58,7 +58,7 @@ public class Classify extends AbstractEndpoint {
      * @param positiveExamples      list of strings illustrating positive examples.
      * @param negativeExamples      list of strings illustrating negative examples.
      * @return {@link CategoryFilter}
-     * @throws ApiException 
+     * @throws ApiException if problem occurs accessing the api
      */
     public CategoryFilter createCategoryFilter(String filterName, List<String> positiveExamples, 
         List<String> negativeExamples) throws ApiException {
