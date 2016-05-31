@@ -12,8 +12,8 @@ package io.cortical.retina.core;
  * Available Part of Speech tags.
  */
 public enum PosTag {
-    CC, CD, DT, EX, FW, IN, JJ, JJR, JJS, JJSS, LRB, LS, MD, NN, NNP, NNPS, NNS, NP, NPS, PDT, POS, PP, PRPR$, PRP,
-    PRP$, RB, RBR, RBS, RP, STAART, SYM, TO, UH, VBD, VBG, VBN, VBP, VB, VBZ, WDT, WP$, WP, WRB;
+    CC, CD, CW, DT, EX, FW, IN, JJ, JJR, JJS, JJSS, LRB, LS, MD, NN, NNP, NNPS, NNS, NP, NPS, PDT, POS, P, PP, PRPR$, PRP,
+    PRP$, PUNCT, RB, RBR, RBS, RP, STAART, SYM, TO, UH, VBD, VBG, VBN, VBP, VB, VBZ, WDT, WP$, WP, WRB;
     
     /**
      * Gets the label
