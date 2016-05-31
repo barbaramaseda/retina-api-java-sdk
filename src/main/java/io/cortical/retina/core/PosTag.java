@@ -21,9 +21,6 @@ public enum PosTag {
      * @return the label
      */
     public String getLabel() {
-        if (this.equals(LRB)) {
-            return "-LRB-";
-        }
         return name();
     }
     
