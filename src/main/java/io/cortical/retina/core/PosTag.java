@@ -12,8 +12,7 @@ package io.cortical.retina.core;
  * Available Part of Speech tags.
  */
 public enum PosTag {
-    CC, CD, DT, EX, FW, IN, JJ, JJR, JJS, JJSS, LRB, LS, MD, NN, NNP, NNPS, NNS, NP, NPS, PDT, POS, PP, PRPR$, PRP,
-    PRP$, RB, RBR, RBS, RP, STAART, SYM, TO, UH, VBD, VBG, VBN, VBP, VB, VBZ, WDT, WP$, WP, WRB;
+    CD, CW, FW, JJ, LRB, MD, NN, NNP, NNPS, NNS, P, PUNCT, RB, SYM, VB;
     
     /**
      * Gets the label
@@ -21,9 +20,6 @@ public enum PosTag {
      * @return the label
      */
     public String getLabel() {
-        if (this.equals(LRB)) {
-            return "-LRB-";
-        }
         return name();
     }
     
