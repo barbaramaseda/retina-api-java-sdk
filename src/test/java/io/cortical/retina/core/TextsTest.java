@@ -131,9 +131,9 @@ public class TextsTest {
      */
     @Test
     public void testGetTokensForText() throws ApiException, JsonProcessingException {
-        Set<PosTag> tags = new LinkedHashSet<>(Arrays.asList(PosTag.DT, PosTag.JJS));
+        Set<PosTag> tags = new LinkedHashSet<>(Arrays.asList(PosTag.CW, PosTag.P));
         int count = 4;
-        String expectedPosTags =  PosTag.DT.getLabel() + "," +  PosTag.JJS.getLabel();
+        String expectedPosTags =  PosTag.CW.getLabel() + "," +  PosTag.P.getLabel();
         when(textApi.getTokensForText(eq(TEXT), eq(expectedPosTags), eq(NOT_NULL_RETINA))).thenReturn(createStrings(count));
         List<String> tokens = texts.getTokensForText(TEXT, tags);
         assertEquals(count, tokens.size());
