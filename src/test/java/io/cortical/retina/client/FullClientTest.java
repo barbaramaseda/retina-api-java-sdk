@@ -293,7 +293,7 @@ public class FullClientTest {
      */
     @Test
     public void testGetTokensForText_withPos() throws ApiException, JsonProcessingException {
-        Set<PosTag> tags = new LinkedHashSet<>(Arrays.asList(PosTag.DT, PosTag.JJS));
+        Set<PosTag> tags = new LinkedHashSet<>(Arrays.asList(PosTag.CW, PosTag.P));
         int count = 4;
         when(endpoints.textApi()).thenReturn(text);
         when(text.getTokensForText(eq(TEXT), eq(tags))).thenReturn(createStrings(count));
