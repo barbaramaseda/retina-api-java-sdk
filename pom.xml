@@ -5,7 +5,7 @@
 
 	<groupId>io.cortical</groupId>
 	<artifactId>retina-api-java-sdk</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>cortical.io's java client - a simple java http client which simplifies communication between any java application and the Retina server using the Retina's REST API.</description>
